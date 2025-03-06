@@ -9,12 +9,6 @@ interface Step {
   waterAmount?: number;
 }
 
-interface PageProps {
-  params: {
-    method: string;
-  };
-}
-
 const brewMethods: Record<string, {
   name: string;
   steps: Step[];
@@ -61,7 +55,13 @@ const brewMethods: Record<string, {
   }
 };
 
-export default function BrewTimer({ params }: PageProps) {
+type Props = {
+  params: {
+    method: string;
+  };
+};
+
+export default function BrewTimer({ params }: Props) {
   const method = params.method;
   const brewMethod = brewMethods[method];
   const [currentStep, setCurrentStep] = useState(0);
